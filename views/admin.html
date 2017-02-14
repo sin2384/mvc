@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title><?=Config::get('site_name') ?></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="http://localhost/mvc3/webroot/css/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="http://localhost/mvc3/webroot/js/admin.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="/"><?=Config::get('site_name')?> - <?=__('lng.admin', 'Admin Section' )?></a>
+	    </div>
+	    <div id="navbar" class="collapse navbar-collapse">
+	      <?php if ( Session::get('login') ) : ?>
+	      <ul class="nav navbar-nav">
+	        <li><a <?php if( App::getRouter()->getController() == 'pages' ){?>class="active"<?php } ?> href="/mvc3/admin/pages/">Pages</a></li>
+	        <li><a <?php if( App::getRouter()->getController() == 'contacts' ){?>class="active"<?php } ?> href="/mvc3/admin/contacts/">Contact</a></li>
+	        <li><a href="/admin/users/logout">Logout</a></li>
+ 	      </ul>
+ 	     <?php endif; ?>
+	    </div><!--/.nav-collapse -->
+	  </div>
+	</nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+      	<?php if ( Session::hasFlash() ) : ?>
+			<div class="alert alert-info">
+				<?php Session::flash(); ?>
+			</div>
+      	<?php endif; ?>
+        <?=$data['content']?>
+      </div>
+
+    </div><!-- /.container -->
+</body>
+</html>
